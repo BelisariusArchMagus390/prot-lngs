@@ -37,7 +37,7 @@ matr = Matrice()
 exit = False
 
 while exit == False :
-
+    # Menu
     print("\n1 - Inserir matriz")
     print("2 - mostrar matriz")
     print("3 - limpar matriz")
