@@ -1,6 +1,6 @@
 class List:
     def __init__(self):
-        self.list = []
+        self.lst = []
         self.size = 0
 
     def inser_list(self, size):
@@ -8,13 +8,13 @@ class List:
 
         for posicao in range(self.size):
             value = input(f"Insira um valor - Posição: {posicao}: ")
-            self.list.append(value)
+            self.lst.append(value)
 
     def show_list(self):
-        print(self.list)
+        print(self.lst)
 
     def clear_list(self):
-        self.list.clear()
+        self.lst.clear()
 
 
 class Matrice:
@@ -23,8 +23,8 @@ class Matrice:
         self.lines = 0
         self.collumns = 0
 
-    def insert_matrice(self, ln, col):
-        self.lines = ln
+    def insert_matrice(self, lin, col):
+        self.lines = lin
         self.collumns = col
 
         for line in range(self.lines):
@@ -55,87 +55,86 @@ class Menu():
         self.matr = Matrice()
         self.lst = List()
 
-    def menu_otions(self, type):
-        # Menu options
-        print("\n1 - Inserir {type}")
-        print("2 - Mostrar {type}")
-        print("3 - Limpar {type}")
+    def menu_structure_options(self, type_structure):
+        # Default menu
+        print(f"\n1 - Inserir {type_structure}")
+        print(f"2 - Mostrar {type_structure}")
+        print(f"3 - Limpar {type_structure}")
         print("0 - Sair")
-        option2 = input("\nEscolha uma das opções acima: ")
+        option = input("\nEscolha uma das opções acima: ")
         print("")
 
-        if option2 == "1":
-            if type == "matrice":
+        # Option to insert the data in the structure
+        if option == "1":
+
+            if type_structure == "matriz":
                 line = input("Quantas linhas vai ter? ")
                 collumn = input("Quantas colunas vai ter? ")
                 print("")
                 self.matr.insert_matrice(int(line), int(collumn))
-            elif type == "list":
-                pass
-        elif option2 == "2":
-            if type == "matrice":
+
+            elif type_structure == "lista":
+                size = input("Qual vai ser o tamanho da lista? ")
+                print("")
+                self.lst.inser_list(int(size))
+
+        # Option to show the data in the structure
+        elif option == "2":
+
+            if type_structure == "matriz":
                 self.matr.show_matrice()
-            elif type == "list":
-                pass
-        elif option2 == "3":
-            if type == "matrice":
+
+            elif type_structure == "lista":
+                self.lst.show_list()
+
+        # Option to clear the data in the structure
+        elif option == "3":
+
+            if type_structure == "matriz":
                 self.matr.clear_matrice()
-            elif type == "list":
-                pass
-        elif option2 == "0":
+
+            elif type_structure == "lista":
+                self.lst.clear_list()
+
+        # Option to exit
+        elif option == "0":
             return True
+
+        # Unavailable option
         else:
             print("Opção indisponível!")
             return True
+        
+        return False
 
     def show_main_menu(self):
         exit_main = False
 
         while exit_main == False :
-
+            # Main menu
             print("\n1 - Usar matriz")
             print("2 - Usar lista")
             print("0 - Sair")
-            option1 = input("\nEscolha uma das opções acima: ")
+            option = input("\nEscolha uma das opções acima: ")
 
             exit_matrice = False
             exit_list = False
 
-            if option1 == "1":
+            # Matrice structure menu options
+            if option == "1":
                 while exit_matrice == False:
-                    
+                    exit_matrice = self.menu_structure_options("matriz")
 
-                    if exit_matrice is True:
-                        break
-            
-            elif option1 == "2":
+            # List structure menu options
+            elif option == "2":
                 while exit_list == False:
-                    # Menu options of list
-                    print("\n1 - Inserir lista")
-                    print("2 - Mostrar lista")
-                    print("3 - Limpar lista")
-                    print("0 - Sair")
-                    option2 = input("\nEscolha uma das opções acima: ")
-                    print("")
+                    exit_list = self.menu_structure_options("lista")    
 
-                    if option2 == "1":
-                        size = input("Qual vai ser o tamanho da lista? ")
-                        print("")
-                        self.lst.inser_list(int(size))
-                    elif option2 == "2":
-                        self.lst.show_list()
-                    elif option2 == "3":
-                        self.lst.clear_list()
-                    elif option2 == "0":
-                        exit_list = True
-                    else:
-                        print("Opção indisponível!")
-
-                    if exit_list is True:
-                        break
-
-            elif option1 == "0":
+            # Option to exit
+            elif option == "0":
                     exit_main = True
+            
+            # Unavailable option
             else:
                 print("Opção indisponível!")
 
@@ -144,6 +143,4 @@ class Menu():
                     break
 
 menu = Menu()
-menu.show_menu()
-
-            
+menu.show_main_menu()
