@@ -1,3 +1,3 @@
-# Projetos de múltiplas linguagens de programação
+# Multiple programming language projects
 
-Estudo e demonstração de conceitos de programação, como estrutura de dados e uso de banco de dados relacionais e etc, em múltiplas linguagens de programação.
+Study and demonstration of programming concepts, such as data structure and use of relational databases, etc., in multiple programming languages.
